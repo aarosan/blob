@@ -5,15 +5,18 @@
 button {
     padding: 0 5px;
     border-radius: 20px;
-    background-color: rgba(217, 217, 217, 0.2);
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #EDE6F7 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;       
     border: 1px solid #000000;
-    transition: background-color 0.3s, box-shadow 0.3s border 0.3s;
     cursor: pointer;
 }
 
 button:hover {
     background-color: #EDE6F7;
     border: 1px solid #8E6EBB;
+    transition: all .5s ease-out;
+    background-position: left bottom;
 }
 
 button:active {

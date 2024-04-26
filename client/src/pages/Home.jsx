@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet";
 import Blob from "../components/Blob";
 import { Canvas } from "@react-three/fiber";
 
+import './style.css';
+
 const Home = () => {
     return (
         <React.Fragment>
@@ -12,13 +14,20 @@ const Home = () => {
             </Helmet>
 
             <div className="page-content">
-                Hello!
+                Blobs
             </div>
 
-            <Canvas camera={{ position: [0.0, 0.0, 8.0] }}>
-                <Blob />
+            <div className="blob-container">
+                <div className="blob" >
+                    <Canvas
+                        camera={{ position: [0, 0, 10], fov: 100 }}
+                    >
+                        <Blob />
+                    </Canvas>
+                </div>
+            </div>
 
-            </Canvas>
+
 
         </React.Fragment>
     )

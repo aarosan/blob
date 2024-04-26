@@ -22,10 +22,13 @@ const Login = () => {
                 <div className="title-container">
                     welcome to your mind
                 </div>
+
                 <div className="input-container">
+
                     <div className="email-container">
                         <input type="text" className="email-input" placeholder="email"/>
                     </div>
+                    
                     <div className="password-container">
                         <input type="text" className="password-input"
                         placeholder="password" />

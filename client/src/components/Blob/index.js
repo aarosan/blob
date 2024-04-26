@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { IcosahedronGeometry } from 'three';
 import vertexShader from "./vertexShader";
 import fragmentShader from "./fragmentShader";
@@ -31,7 +31,7 @@ const Blob = () => {
 
     return (
 
-            <mesh ref={mesh} scale={1.5} position={[0, 0, 0]} geometry={new IcosahedronGeometry(2, 20)}>
+            <mesh ref={mesh} scale={1.5} position={[0, 0, 0]} geometry={new IcosahedronGeometry(2, 40)}>
                 <shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader}
                 uniforms={uniforms}/>
             </mesh>

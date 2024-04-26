@@ -25,7 +25,9 @@
 }
 
 .first-name-input {
-    background-color: rgba(217, 217, 217, 0.2);
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #FFE3CF 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;    
     border: 1px solid #000000;
     border-radius: 20px;
     text-align: center;
@@ -38,6 +40,8 @@
 .first-name-input:hover {
     background-color: #FFE3CF !important;
     border: 1px solid #CB7940 !important;
+    transition: all .5s ease-out;
+    background-position: left bottom;
 }
 
 .last-name-container {
@@ -45,7 +49,9 @@
 }
 
 .last-name-input {
-    background-color: rgba(217, 217, 217, 0.2);
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #F2C6DE 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
     border: 1px solid #000000;
     border-radius: 20px;
     text-align: center;
@@ -58,6 +64,8 @@
 .last-name-input:hover {
     background-color: #F2C6DE !important;
     border: 1px solid #89004B !important;
+    transition: all .5s ease-out;
+    background-position: left bottom;
 }
 
 
@@ -66,7 +74,9 @@
 }
 
 .email-input {
-    background-color: rgba(217, 217, 217, 0.2);
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #C6DEF1 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
     border: 1px solid #000000;
     border-radius: 20px;
     text-align: center;
@@ -79,6 +89,8 @@
 .email-input:hover {
     background-color: #C6DEF1 !important;
     border: 1px solid #003C6B !important;
+    transition: all .5s ease-out;
+    background-position: left bottom;
 }
 
 .password-container {
@@ -86,7 +98,9 @@
 }
 
 .password-input {
-    background-color: rgba(217, 217, 217, 0.2);
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #C9E4DE 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
     border: 1px solid #000000;
     border-radius: 20px;
     text-align: center;
@@ -99,6 +113,8 @@
 .password-input:hover {
     background-color: #C9E4DE !important;
     border: 1px solid #005240 !important;
+    transition: all .5s ease-out;
+    background-position: left bottom;
 }
 
 .link-container {
@@ -114,3 +130,22 @@
     color: rgba(110, 0, 0, .8);
 }
 
+.blob-container {
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.blob {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px; 
+}
+
+.canvas-container {
+    width: 100%;
+    height: 100%; 
+}
