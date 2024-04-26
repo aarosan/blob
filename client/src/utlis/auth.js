@@ -36,7 +36,7 @@ class AuthService {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
     window.location.assign('/myBlobs');
-  }
+  }  
 
   logout() {
     // Clear user token and profile data from localStorage
