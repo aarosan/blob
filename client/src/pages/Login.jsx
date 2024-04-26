@@ -18,25 +18,32 @@ const Login = () => {
                 <meta />
             </Helmet>
 
-            <div className="page-content">
+            <div className="login-page-content">
                 <div className="title-container">
-                    <h1>welcome to your mind</h1>
+                    welcome to your mind
                 </div>
                 <div className="input-container">
                     <div className="email-container">
-                        <input type="text" className="email-input" />
+                        <input type="text" className="email-input" placeholder="email"/>
                     </div>
                     <div className="password-container">
-                        <input type="text" className="password-input" />
+                        <input type="text" className="password-input"
+                        placeholder="password" />
                     </div>
                 </div>
                 <div className="link-btn-container">
+                    <div className="btn-container">
                         <RouterButton
                         api="/"
                         text="enter" 
                         onClick={test}/>
-
+                    </div>
+                    <div className="link-container">
                         <Link to="/signup" className="signup-link">sign up</Link>
+                    </div>
+                       
+
+                        
                 </div>
             </div>
         </React.Fragment>
