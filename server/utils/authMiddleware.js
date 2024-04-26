@@ -1,23 +1,36 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 
-const authenticateJWT = (req, res, next) => {
-  let token = req.body.token || req.query.token || req.headers.authorization;
-  ;
+const secret = 'mysecretssshhhhhhh';
+const expiration = '2h';
 
-  if (!token) {
-    return res.status(401).json({ message: 'Authorization header missing' });
-  }
+module.exports = {
+  authMiddleware: function ( req, res, next ) {
+    let token = req.body.token || req.query.token || req.headers.authorization;
 
-  try {
-    const decoded = jwt.verify(token, 'your_secret_key');
-    console.log('Decoded:', decoded);
-    req.user = decoded.user;
-    next();
-  } catch (error) {
-    console.error(error);
-    return res.status(401).json({ message: 'Invalid or expired token' });
-  }
+    if (req.headers.authorization) {
+      token = token.split(' ').pop().trim();
+    }
+
+    if (!token) {
+      req.user = null;
+      return next();
+    }
+
+    try {
+      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      req.user = data;
+      next();
+    } catch (error) {
+      console.error('Error in authentication:', error);
+      req.user = null;
+      res.status(401).json({ message: 'Invalid token' }); 
+    }
+
+    return req;
+  },
+  signToken: function ({ username, email, _id }) {
+    const payload = { username, email, _id };
+
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
 };
-
-module.exports = authenticateJWT;

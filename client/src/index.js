@@ -1,11 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, useRoutes } from 'react-router-dom';
 import './index.css';
 
 import App from './App';
 import Error from './pages/Error';
-import Home from './pages/Home';
+import MyBlobs from './pages/MyBlobs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Login />,
       },
       {
         path: '/login',
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       },
+      {
+        path: '/myBlobs',
+        element: <MyBlobs />
+      }
     ]
   }
 ])

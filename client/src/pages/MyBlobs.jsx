@@ -10,7 +10,7 @@ import './style/home.css';
 import RouterButton from "../components/routerButton";
 
 
-const Home = () => {
+const MyBlobs = () => {
 
     const test = () => {
         console.log('Add a Blob Button Pressed');
@@ -59,7 +59,7 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default MyBlobs;
 
 
 

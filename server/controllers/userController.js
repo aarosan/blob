@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { signToken } = require('../utils/authMiddleware');
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -29,7 +30,7 @@ exports.login = async (req, res) => {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
-        const token = jwt.sign({ user: { id: user._id } }, 'your_secret_key', { expiresIn: '1h' });
+        const token = signToken(user);
 
         return res.status(200).json({ message: 'Login successful', token, user });
     } catch (error) {

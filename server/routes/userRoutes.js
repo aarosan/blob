@@ -2,7 +2,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const blobController = require('../controllers/blobController');
 const taskController = require('../controllers/taskController');
-const authenticateJWT = require('../utils/authMiddleware');
+const authMiddleware = require('../utils/authMiddleware');
 
 const router = express.Router();
 
@@ -11,8 +11,8 @@ router.get('/', userController.getAllUsers);
 router.post('/login', userController.login);
 router.post('/signup', userController.signup);
 
-router.use('/blobs', authenticateJWT);
-router.use('/blobs/:blobName/tasks', authenticateJWT);
+router.use('/blobs', authMiddleware.authMiddleware);
+router.use('/blobs/:blobName/tasks', authMiddleware.authMiddleware);
 
 // Blobs
 router.get('/blobs/', blobController.getAllBlobs);
