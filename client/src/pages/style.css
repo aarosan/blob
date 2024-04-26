@@ -6,11 +6,60 @@
     height: 100vh;
 }
 
+.signup-page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .title-container {
     font-size: 48px;
     color: rgba(0, 0, 0, .8);
     margin-bottom: 30px;
 }
+
+.first-name-container {
+    margin: 10px 0 30px;
+}
+
+.first-name-input {
+    background-color: rgba(217, 217, 217, 0.2);
+    border: 1px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 80px;
+    font-size: 16px;
+}
+
+.first-name-input:focus,
+.first-name-input:active,
+.first-name-input:hover {
+    background-color: #FFE3CF !important;
+    border: 1px solid #CB7940 !important;
+}
+
+.last-name-container {
+    margin: 10px 0 30px;
+}
+
+.last-name-input {
+    background-color: rgba(217, 217, 217, 0.2);
+    border: 1px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 80px;
+    font-size: 16px;
+}
+
+.last-name-input:focus,
+.last-name-input:active,
+.last-name-input:hover {
+    background-color: #F2C6DE !important;
+    border: 1px solid #89004B !important;
+}
+
 
 .email-container {
     margin: 10px 0 30px;
@@ -26,7 +75,8 @@
 }
 
 .email-input:focus,
-.email-input:active {
+.email-input:active,
+.email-input:hover {
     background-color: #C6DEF1 !important;
     border: 1px solid #003C6B !important;
 }
@@ -45,7 +95,8 @@
 }
 
 .password-input:focus,
-.password-input:active {
+.password-input:active,
+.password-input:hover {
     background-color: #C9E4DE !important;
     border: 1px solid #005240 !important;
 }
