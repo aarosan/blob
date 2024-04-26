@@ -5,14 +5,14 @@ const taskController = require('../controllers/taskController');
 const router = express.Router();
 
 // Blobs
-router.get('/blobs', blobController.getAllBlobs);
-router.get('/blobs/:blobName', blobController.getOneBlob);
-router.post('/blobs', blobController.addABlob);
-router.delete('/blobs/:blobName', blobController.deleteABlob);
+router.get('/', blobController.getAllBlobs);
+router.get('/:blobName', blobController.getOneBlob);
+router.post('/', blobController.addABlob);
+router.delete('/:blobName', blobController.deleteABlob);
 
 // Tasks
-router.get('/blobs/:blobName/tasks', taskController.getAllTasks);
-router.post('/blobs/:blobName/tasks', taskController.addATask);
-router.delete('/blobs/:blobName/tasks/:taskId', taskController.deleteATask);
+router.get('/:blobName/tasks', taskController.getAllTasks);
+router.post('/:blobName/tasks', taskController.addATask);
+router.delete('/:blobName/tasks/:taskId', taskController.deleteATask);
 
 module.exports = router;
