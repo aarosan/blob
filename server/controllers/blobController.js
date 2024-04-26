@@ -1,9 +1,12 @@
 const Blob = require('../models/Blob');
+const User = require('../models/User');
 
 exports.getAllBlobs = async (req, res) => {
     try {
         const loggedInUserId = req.user.id;
         const blobs = await Blob.find({ user: loggedInUserId});
+
+        console.log(loggedInUserId, blobs);
 
         return res.status(200).json({ blobs });
     } catch (error) {
@@ -35,7 +38,7 @@ exports.addABlob = async (req, res) => {
         const  { name, color, tasks } = req.body;
         const loggedInUserId = req.user.id;
 
-        const newBlob = newBlob({ name, color, user: loggedInUserId, tasks });
+        const newBlob = Blob({ name, color, user: loggedInUserId, tasks });
 
         await newBlob.save();
 
@@ -50,26 +53,19 @@ exports.deleteABlob = async (req, res) => {
     try {
         const blobName = req.params.blobName;
         const loggedInUserId = req.user.id;
+        console.log(blobName);
+        console.log(loggedInUserId);
 
-        const blob = await Blob.findOne({ name: blobName, user: loggedInUserId });
+        console.log('Before blob delete')
 
-        if (!blob) {
+        const deletedBlob = await Blob.findOneAndDelete({ name: blobName, user: loggedInUserId });
+        console.log(deletedBlob);
+
+        if (!deletedBlob) {
             return res.status(404).json({ message: 'Blob not found' });
         }
 
-        await Task.deleteMany({ _id: { $in: blob.tasks } });
-
-        await blob.delete();
-
-        const user = await User.findById(loggedInUserId);
-
-        if (user) {
-            const index = user.blobs.indexOf(blob_id);
-            if (index !== -1) {
-                user.blobs.splice(index, 1);
-                await user.save();
-            }
-        }
+        console.log('After blob delete')
 
         return res.status(200).json({ message: 'Blob and associated tasks successfully deleted'});
     } catch (error) {

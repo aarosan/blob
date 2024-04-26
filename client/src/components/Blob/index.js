@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { IcosahedronGeometry } from 'three';
 import vertexShader from "./vertexShader";
-import fragmentShader from "./fragmentShaderBlue";
+import fragmentShader from "./fragmentShader";
 import { MathUtils } from "three";
 
 const Blob = () => {

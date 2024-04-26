@@ -17,22 +17,22 @@ db.once('open', async () => {
 
         // Create Blobs for User 1
         const blob1User1 = await Blob.create({
-            name: 'Coding Blob 1',
+            name: 'Coding',
             color: 'blue',
             user: user1._id,
             tasks: [
-                { name: 'Task 1', date: new Date('2024-05-10') },
-                { name: 'Task 2', date: new Date('2024-05-11') }
+                { name: '5 HackerRank Problems', date: new Date('2024-05-10') },
+                { name: 'Connect MongoDB', date: new Date('2024-05-11') }
             ]
         });
 
         const blob2User1 = await Blob.create({
-            name: 'Coding Blob 2',
+            name: 'Writing',
             color: 'green',
             user: user1._id,
             tasks: [
-                { name: 'Task 1', date: new Date('2024-05-12') },
-                { name: 'Task 2', date: new Date('2024-05-13') }
+                { name: 'Finish Chapter', date: new Date('2024-05-12') },
+                { name: 'Research', date: new Date('2024-05-13') }
             ]
         });
 
@@ -51,22 +51,22 @@ db.once('open', async () => {
 
         // Create Blobs for User 2
         const blob1User2 = await Blob.create({
-            name: 'Work Blob 1',
+            name: 'Work',
             color: 'orange',
             user: user2._id,
             tasks: [
-                { name: 'Task 1', date: new Date('2024-05-10') },
-                { name: 'Task 2', date: new Date('2024-05-11') }
+                { name: 'Presentation', date: new Date('2024-05-10') },
+                { name: 'Document', date: new Date('2024-05-11') }
             ]
         });
 
         const blob2User2 = await Blob.create({
-            name: 'Work Blob 2',
+            name: 'Gardening',
             color: 'purple',
             user: user2._id,
             tasks: [
-                { name: 'Task 1', date: new Date('2024-05-12') },
-                { name: 'Task 2', date: new Date('2024-05-13') }
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
             ]
         });
 

@@ -14,9 +14,6 @@ void main() {
     // Calculate the gradient color based on vUv
     vec3 gradientColor = mix(color1, color2, vUv.y);
 
-    // Apply distortion to the gradient color
-    gradientColor *= 1.0 - distort;
-
     gl_FragColor = vec4(gradientColor, 1.0);
 }
 
