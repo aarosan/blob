@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import "./style.css";
+import "./style/style.css";
 
 import RouterButton from "../components/routerButton";
 
