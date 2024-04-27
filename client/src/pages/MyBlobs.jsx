@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 
 import './style/home.css';
-
-import RouterButton from "../components/routerButton";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const MyBlobs = () => {
@@ -24,22 +24,22 @@ const MyBlobs = () => {
             </Helmet>
 
             <div className="page-content">
-                <div className="left-nav">
-                    <div className="page-title">
-                        Blobs
+                <div className="nav-bar">
+                    <div className="left-nav">
+                        <div className="page-title">
+                            Blobs
+                        </div>
+                    </div>
+                    <div className="right-nav">
+                        <div className="link-container">
+                            <Link to="/login" className="signout-link">sign out</Link>
+                        </div>
+                        <div className="add-blob-btn">
+                            <FontAwesomeIcon icon={faPlus} onClick={test} />
+                        </div>
                     </div>
                 </div>
-                <div className="right-nav">
-                    <div className="link-container">
-                        <Link to="/login" className="signout-link">sign out</Link>
-                    </div>
-                    <div className="add-blob-btn">
-                        <RouterButton
-                            api="/addABlob"
-                            text="+" 
-                            onClick={test}/>
-                    </div>
-                </div>
+                
 
             </div>
 
