@@ -44,10 +44,17 @@
 }
 
 .blob-container {
+    width: 300px;
+    height: 300px;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    border: 1px solid black;
+    flex-direction: column;
+    gap: 20px;
+    /* border: 1px solid black; */
+}
+
+.row {
+    display: flex;
+    gap: 20px; /* Gap between blobs */
 }
 
 .blob {
@@ -61,3 +68,9 @@
 }
 
 
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

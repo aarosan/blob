@@ -30,3 +30,38 @@ button:active {
     font-weight: 300;
     font-size: 16px;
 }
+
+.blob-container {
+    position: relative;
+}
+
+.blob-name {
+    position: absolute;
+    z-index: 1; 
+    font-size: 48px;
+    top: 0;
+    right: 0;
+    color: rgba(0, 0, 0, 1);
+    padding-top: 150px;
+    padding-right: 10px;
+}
+
+.blob-name p {
+    position: relative;
+    display: inline-block;
+}
+
+.blob-name p::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Initially, the underline is not visible */
+    height: 2px; /* Adjust the underline thickness */
+    background-color: black; /* Change the color of the underline */
+    transition: width 0.3s ease; /* Add transition effect */
+}
+
+.blob-name p:hover::before {
+    width: 100%; /* Expand the underline on hover */
+}

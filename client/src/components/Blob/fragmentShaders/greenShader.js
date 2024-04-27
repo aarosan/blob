@@ -8,8 +8,8 @@ varying float vDisplacement;
 void main() {
     float distort = 2.0 * vDisplacement * u_intensity * sin(vUv.y * 10.0 + u_time);
     
-    vec3 color1 = vec3(255.0 / 255.0, 227.0 / 255.0, 207.0 / 255.0); 
-    vec3 color2 = vec3(203.0 / 255.0, 121.0 / 255.0, 64.0 / 255.0);
+    vec3 color1 = vec3(201.0 / 255.0, 228.0 / 255.0, 222.0 / 255.0);
+    vec3 color2 = vec3(0.0 / 255.0, 82.0 / 255.0, 64.0 / 255.0);
 
     // Calculate the gradient color based on vUv
     vec3 gradientColor = mix(color1, color2, vUv.y);

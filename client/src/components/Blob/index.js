@@ -1,19 +1,59 @@
-import React, { useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { IcosahedronGeometry } from 'three';
 import vertexShader from "./vertexShader";
-import fragmentShader from "./fragmentShader";
 import { MathUtils } from "three";
 
-const Blob = () => {
+function importFragmentShader(color) {
+  switch (color) {
+      case 'blue':
+          return import ('./fragmentShaders/blueShader.js');
+      case 'green':
+          return import('./fragmentShaders/greenShader.js');
+      case 'purple':
+        return import('./fragmentShaders/purpleShader.js');
+      case 'orange':
+        return import('./fragmentShaders/orangeShader.js');
+      case 'yellow':
+        return import('./fragmentShaders/yellowShader.js');
+      case 'pink':
+        return import('./fragmentShaders/pinkShader.js');
+      case 'red':
+        return import('./fragmentShaders/redShader.js');
+        default:
+        return import('./fragmentShaders/blueShader.js');
+  }
+}
+
+const Blob = ({ color }) => {
     const mesh = useRef();
     const hover = useRef(false);
-    const uniforms = useMemo(() => {
-        return {
-            u_time: { value: 0 },
-            u_intensity: { value: 0.3 },
-        };
-    });
+
+
+    const [fragmentShaderModule, setFragmentShaderModule] = useState(null);
+
+    useEffect(() => {
+      let isMounted = true;
+
+      importFragmentShader(color).then(module => {
+          if (isMounted) {
+              setFragmentShaderModule(module.default);
+          }
+      });
+
+      return () => {
+          isMounted = false;
+      };
+  }, [color]);
+
+
+    useMemo(() => {
+      importFragmentShader(color).then(module => {
+        setFragmentShaderModule(module.default);
+      });
+    }, [color]);
+
+    console.log("Fragment Shade Module:", fragmentShaderModule);
 
     useFrame((state) => {
         const { clock } = state;
@@ -29,13 +69,23 @@ const Blob = () => {
         }
       });
 
-    return (
-
-            <mesh ref={mesh} scale={1.5} position={[0, 0, 0]} geometry={new IcosahedronGeometry(2, 40)}>
-                <shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader}
-                uniforms={uniforms}/>
-            </mesh>
-    )
+      return fragmentShaderModule ? (
+        <mesh 
+          ref={mesh} 
+          scale={3.5} 
+          position={[0, 0, 0]} 
+          geometry={new IcosahedronGeometry(2, 40)}>
+            <shaderMaterial 
+              vertexShader={vertexShader} 
+              fragmentShader={fragmentShaderModule}
+              uniforms={{
+                u_time: { value: 0 },
+                u_intensity: { value: 0.3 }
+              }}
+            />
+        </mesh>
+      ) : null;
+      
 }
 
 export default Blob;
