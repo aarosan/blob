@@ -75,6 +75,93 @@ db.once('open', async () => {
         user2.blobs.push(blob2User2._id);
         await user2.save();
 
+
+        const user3 = await User.create({
+            firstName: 'Example',
+            lastName: 'Demo',
+            email: 'demo@example.com',
+            password: 'password'
+        });
+
+        const blob1User3 = await Blob.create({
+            name: 'coding',
+            color: 'blue',
+            user: user3._id,
+            tasks: [
+                { name: 'Presentation', date: new Date('2024-05-10') },
+                { name: 'Document', date: new Date('2024-05-11') }
+            ]
+        });
+
+        const blob2User3 = await Blob.create({
+            name: 'gardening',
+            color: 'green',
+            user: user3._id,
+            tasks: [
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
+            ]
+        });
+
+        const blob3User3 = await Blob.create({
+            name: 'life',
+            color: 'purple',
+            user: user3._id,
+            tasks: [
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
+            ]
+        });
+
+        const blob4User3 = await Blob.create({
+            name: 'grocery',
+            color: 'orange',
+            user: user3._id,
+            tasks: [
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
+            ]
+        });
+
+        const blob5User3 = await Blob.create({
+            name: 'writing',
+            color: 'yellow',
+            user: user3._id,
+            tasks: [
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
+            ]
+        });
+
+        const blob6User3 = await Blob.create({
+            name: 'work',
+            color: 'pink',
+            user: user3._id,
+            tasks: [
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
+            ]
+        });
+
+        const blob7User3 = await Blob.create({
+            name: 'reading',
+            color: 'red',
+            user: user3._id,
+            tasks: [
+                { name: 'Plant flowers', date: new Date('2024-05-12') },
+                { name: 'Water Plants', date: new Date('2024-05-13') }
+            ]
+        });
+
+        user3.blobs.push(blob1User3._id);
+        user3.blobs.push(blob2User3._id);
+        user3.blobs.push(blob3User3._id);
+        user3.blobs.push(blob4User3._id);
+        user3.blobs.push(blob5User3._id);
+        user3.blobs.push(blob6User3._id);
+        user3.blobs.push(blob7User3._id);
+        await user3.save();
+
         console.log('Users and blobs seeded');
         process.exit();
     } catch (error) {

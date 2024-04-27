@@ -1,24 +1,24 @@
 const jwt = require('jsonwebtoken');
 
 const secret = 'mysecretssshhhhhhh';
-const expiration = '2h';
 
 module.exports = {
   authMiddleware: function ( req, res, next ) {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
-    if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
+    if (req.headers.authorization && token.startsWith('Bearer ')) {
+      token = token.slice(7);
     }
 
+    console.log(token)
+
     if (!token) {
-      req.user = null;
       return next();
     }
 
     try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
+      const decoded = jwt.verify(token, secret);
+      req.user = decoded.data;
       next();
     } catch (error) {
       console.error('Error in authentication:', error);
@@ -31,6 +31,6 @@ module.exports = {
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
 
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+    return jwt.sign({ data: payload }, secret);
   },
 };

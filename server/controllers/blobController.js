@@ -1,19 +1,23 @@
 const Blob = require('../models/Blob');
 const User = require('../models/User');
+const { authMiddleware } = require('../utils/authMiddleware');
+
 
 exports.getAllBlobs = async (req, res) => {
     try {
-        const loggedInUserId = req.user.id;
-        const blobs = await Blob.find({ user: loggedInUserId});
+        // Extract user information from req.user
+        const { _id } = req.user;
 
-        console.log(loggedInUserId, blobs);
+        // Fetch blobs associated with the logged-in user using user's _id
+        const blobs = await Blob.find({ user: _id });
 
         return res.status(200).json({ blobs });
     } catch (error) {
         console.error('Error fetching blobs:', error);
-        return res.status(500).json({ message: 'Internal server error'})
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 exports.getOneBlob = async (req, res) => {
     try {

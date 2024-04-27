@@ -6,13 +6,13 @@ const authMiddleware = require('../utils/authMiddleware');
 
 const router = express.Router();
 
+router.use('/blobs', authMiddleware.authMiddleware);
+router.use('/blobs/:blobName/tasks', authMiddleware.authMiddleware);
+
 // Users
 router.get('/', userController.getAllUsers);
 router.post('/login', userController.login);
 router.post('/signup', userController.signup);
-
-router.use('/blobs', authMiddleware.authMiddleware);
-router.use('/blobs/:blobName/tasks', authMiddleware.authMiddleware);
 
 // Blobs
 router.get('/blobs/', blobController.getAllBlobs);

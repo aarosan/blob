@@ -26,6 +26,12 @@ const Login = () => {
 
             console.log('Response Status:', response.status);
 
+            if (response.status === 401) {
+                // Handle 401 Unauthorized
+                console.log('Authentication required');
+                // You can display a message to the user or redirect to the login page
+                return;
+            }    
 
             if (!response.ok) {
                 const data = await response.json();
@@ -33,10 +39,11 @@ const Login = () => {
             }
 
             const responseData = await response.json();
+            console.log('Response Data', responseData)
             const token = responseData.token;
+            console.log('Token', token)
 
             Auth.login(token); 
-
             console.log("Login successful");
         } catch (error) {
             console.error("Error logging in:", error.message);
@@ -69,7 +76,7 @@ const Login = () => {
                 <div className="link-btn-container">
                     <div className="btn-container">
                         <RouterButton
-                        api="/"
+                        api="/myBlobs"
                         text="enter" 
                         onClick={handleLogin}/>
                     </div>

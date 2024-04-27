@@ -130,3 +130,6 @@
     color: rgba(110, 0, 0, .8);
 }
 
+.login-signup-container {
+    display: flex;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Blobs from "../components/blobs";
 import { Link } from "react-router-dom";
+import Auth from '../utlis/auth'; 
 
 
 import './style/home.css';
@@ -11,7 +12,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const MyBlobs = () => {
     const [isLoading, setIsLoading] = useState(true);
-
+    const [blobsData, setBlobsData] = useState([]);
 
     useEffect(() => {
         // Simulating loading time
@@ -19,11 +20,46 @@ const MyBlobs = () => {
             setIsLoading(false);
         }, 1000); // Adjust the timeout duration as needed
 
+        getAllBlobs();
+
         return () => clearTimeout(timer);
     }, []);
 
+    const getAllBlobs = () => {
+        fetch("http://localhost:4000/users/blobs", {
+            headers: {
+                Authorization: `Bearer ${Auth.getToken()}`
+            }
+        })
+            .then(response => {
+                console.log('FETCH RESPONSE:', response)
+                if(!response.ok) {
+                    throw new Error('Network respionse was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setBlobsData(data.blobs);
+            })
+            .catch(error => {
+                console.error('Error fetching blobs data:', error);
+            })
+    }
+
+    // const handleSignOut = () => {
+    //     Auth.logout();
+    // };
+
     const test = () => {
         console.log('Add a Blob Button Pressed');
+    }
+
+    function chunks(array, size) {
+        const chunkedArray = [];
+        for (let i = 0; i < array.length; i += size) {
+            chunkedArray.push(array.slice(i, i + size));
+        }
+        return chunkedArray;
     }
 
     return (
@@ -45,40 +81,29 @@ const MyBlobs = () => {
                         </div>
                         <div className="right-nav">
                             <div className="link-container">
-                                <Link to="/login" className="signout-link">sign out</Link>
+                                <Link to="/login" className="signout-link" 
+                                // onClick={handleSignOut}
+                                >sign out</Link>
                             </div>
                             <div className="add-blob-btn">
                                 <FontAwesomeIcon icon={faPlus} onClick={test} />
                             </div>
                         </div>
                     </div>
-
                     <div className="blob-container">
-                        <div className="row">
-                            <div className="blob">
-                                <Blobs name={'coding'} color={'blue'} />
+                        {chunks(blobsData, 4).map((row, rowIndex) => (
+                            <div key={rowIndex} className="row">
+                                {row.map((blob, index) => (
+                                    <div key={index} className="blob">
+                                        <Blobs name={blob.name} color={blob.color} />
+                                    </div>
+                                ))}
+                                {/* Add empty blobs to fill in the row */}
+                                {Array.from({ length: 4 - row.length }).map((_, emptyIndex) => (
+                                    <div key={emptyIndex} className="empty-blob"></div>
+                                ))}
                             </div>
-                            <div className="blob">
-                                <Blobs name={'life'} color={'red'} />
-                            </div>
-                            <div className="blob">
-                                <Blobs name={'writing'} color={'green'} />
-                            </div>
-                            <div className="blob">
-                                <Blobs name={'grocery'} color={'purple'} />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="blob">
-                                <Blobs name={'exercise'} color={'yellow'} />
-                            </div>
-                            <div className="blob">
-                                <Blobs name={'school'} color={'orange'} />
-                            </div>
-                            <div className="blob">
-                                <Blobs name={'gardening'} color={'pink'} />
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             )}

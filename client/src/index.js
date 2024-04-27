@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter, useRoutes } from 'react-router-dom
 import './index.css';
 
 import App from './App';
+import Home from './pages/Home';
 import Error from './pages/Error';
 import MyBlobs from './pages/MyBlobs';
 import Login from './pages/Login';
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Login />,
+        element: <Home />,
       },
       {
         path: '/login',
