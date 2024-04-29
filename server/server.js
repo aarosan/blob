@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const authMiddleware = require("./utils/authMiddleware");
+const {authMiddleware} = require("./utils/authMiddleware");
 const db = require('./config/connection');
 const routes = require('./routes');
 require('dotenv').config();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: 'http://localhost:3000' }));
 
-app.use(authMiddleware.authMiddleware);
+app.use(authMiddleware);
 
 app.use(routes);
 

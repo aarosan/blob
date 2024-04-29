@@ -29,21 +29,29 @@ class AuthService {
 
   getToken() {
     // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
+    return localStorage.getItem('token');
   }
 
-  login(idToken) {
+  login(token) {
     // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken);
+    console.log('auth.js:', token)
+    localStorage.setItem('token', token);
     // window.location.assign('/');
   }  
 
+  isAuthenticated() {
+    // Delegate to the loggedIn method
+    return this.loggedIn();
+  }
+
+
   logout() {
     // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('token');
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
 }
 
-export default new AuthService();
+const authServiceInstance = new AuthService();
+export default authServiceInstance;

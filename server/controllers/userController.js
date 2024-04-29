@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const { signToken } = require('../utils/authMiddleware');
+const { authMiddleware, signToken } = require('../utils/authMiddleware');
+
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -16,9 +17,12 @@ exports.getAllUsers = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        console.log('Login request body:', req.body);
+
         const { email, password } = req.body;
+        console.log('Login request received. Email:', email);
+
         const user = await User.findOne({ email });
-        console.log(email, password);
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid email' });
@@ -30,7 +34,9 @@ exports.login = async (req, res) => {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
+        //Generate JWT Token
         const token = signToken(user);
+        console.log('Token generated:', token);
 
         return res.status(200).json({ message: 'Login successful', token, user });
     } catch (error) {

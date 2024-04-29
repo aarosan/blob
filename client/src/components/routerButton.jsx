@@ -7,12 +7,14 @@ const RouterButton = ({ api, text, state = null, onClick }) => {
 
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const handleClick = async () => {
         navigate(api, { state: state });
         if (onClick) {
-            onClick();
+            await onClick();
         }
+        navigate(api, { state: state });
     }
+    
     return (
         <React.Fragment>
 

@@ -53,7 +53,7 @@ const Blob = ({ color }) => {
       });
     }, [color]);
 
-    console.log("Fragment Shade Module:", fragmentShaderModule);
+    // console.log("Fragment Shade Module:", fragmentShaderModule);
 
     useFrame((state) => {
         const { clock } = state;

@@ -15,40 +15,41 @@ const MyBlobs = () => {
     const [blobsData, setBlobsData] = useState([]);
 
     useEffect(() => {
-        // Simulating loading time
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000); // Adjust the timeout duration as needed
-
-        getAllBlobs();
-
-        return () => clearTimeout(timer);
+        // Check if user is authenticated
+        if (Auth.isAuthenticated()) {
+            getAllBlobs();
+        }
     }, []);
 
+
     const getAllBlobs = () => {
+        console.log(`THIS IS THE GETALLBLOBS REQUEST: Bearer ${Auth.getToken()}`
+    )
         fetch("http://localhost:4000/users/blobs", {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
         })
-            .then(response => {
-                console.log('FETCH RESPONSE:', response)
-                if(!response.ok) {
-                    throw new Error('Network respionse was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setBlobsData(data.blobs);
-            })
-            .catch(error => {
-                console.error('Error fetching blobs data:', error);
-            })
+        .then(response => {
+            console.log('FETCH RESPONSE:', response)
+            if(!response.ok) {
+                throw new Error('Network respionse was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setBlobsData(data.blobs);
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.error('Error fetching blobs data:', error);
+            
+        })
     }
 
-    // const handleSignOut = () => {
-    //     Auth.logout();
-    // };
+    const handleSignOut = () => {
+        Auth.logout();
+    };
 
     const test = () => {
         console.log('Add a Blob Button Pressed');
@@ -81,8 +82,8 @@ const MyBlobs = () => {
                         </div>
                         <div className="right-nav">
                             <div className="link-container">
-                                <Link to="/login" className="signout-link" 
-                                // onClick={handleSignOut}
+                                <Link to="/" className="signout-link" 
+                                onClick={handleSignOut}
                                 >sign out</Link>
                             </div>
                             <div className="add-blob-btn">
