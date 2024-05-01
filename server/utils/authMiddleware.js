@@ -17,6 +17,7 @@ function authMiddleware(req, res, next) {
         token = token.slice(7);
     }
 
+
     console.log('authMiddleware Token', token);
 
     if (!token) {
@@ -29,7 +30,7 @@ function authMiddleware(req, res, next) {
         next();
     } catch (error) {
         console.error('Error in authentication:', error);
-        req.user = null;
+        // req.user = null;
         res.status(401).json({ message: 'Invalid token' });
     }
 }

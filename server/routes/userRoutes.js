@@ -12,9 +12,9 @@ router.post('/login', authMiddleware, userController.login);
 router.post('/signup', userController.signup);
 
 // Blobs
-router.get('/blobs/', authMiddleware, blobController.getAllBlobs);
+router.get('/blobs', authMiddleware, blobController.getAllBlobs);
 router.get('/blobs/:blobName', authMiddleware, blobController.getOneBlob);
-router.post('/blobs/', authMiddleware, blobController.addABlob);
+router.post('/blobs', authMiddleware, blobController.addABlob);
 router.delete('/blobs/:blobName', authMiddleware, blobController.deleteABlob);
 
 // Tasks

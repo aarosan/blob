@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Blobs from "../components/blobs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Auth from '../utlis/auth'; 
 
 
@@ -11,6 +11,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const MyBlobs = () => {
+    const navigate = useNavigate()
+;
     const [isLoading, setIsLoading] = useState(true);
     const [blobsData, setBlobsData] = useState([]);
 
@@ -43,7 +45,6 @@ const MyBlobs = () => {
         })
         .catch(error => {
             console.error('Error fetching blobs data:', error);
-            
         })
     }
 
@@ -51,8 +52,9 @@ const MyBlobs = () => {
         Auth.logout();
     };
 
-    const test = () => {
+    const handleAddBlob = () => {
         console.log('Add a Blob Button Pressed');
+        navigate('/addBlobs');
     }
 
     function chunks(array, size) {
@@ -87,7 +89,7 @@ const MyBlobs = () => {
                                 >sign out</Link>
                             </div>
                             <div className="add-blob-btn">
-                                <FontAwesomeIcon icon={faPlus} onClick={test} />
+                                <FontAwesomeIcon icon={faPlus} onClick={handleAddBlob} />
                             </div>
                         </div>
                     </div>

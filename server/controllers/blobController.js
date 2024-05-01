@@ -1,6 +1,8 @@
+require('dotenv').config();
 const Blob = require('../models/Blob');
 const User = require('../models/User');
 const { authMiddleware } = require('../utils/authMiddleware');
+const jwt = require('jsonwebtoken');
 
 
 exports.getAllBlobs = async (req, res) => {
@@ -40,13 +42,34 @@ exports.getOneBlob = async (req, res) => {
 exports.addABlob = async (req, res) => {
     try {
         const  { name, color, tasks } = req.body;
-        const loggedInUserId = req.user.id;
+
+        if (!name || !color || !tasks || tasks.length === 0) {
+            return res.status(400).json({ message: 'Name, color, and at least one task are required.' });
+        }
+
+        console.log('req.headers.authorization',req.headers.authorization);
+
+        const token = req.headers.authorization.split(' ')[1];
+
+        console.log('BLOB CONTROLLER:', token);
+
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        if (!decodedToken) {
+            throw new Error('Failed to decode token');
+        }
+
+        console.log('decodedToken', decodedToken);
+
+        const loggedInUserId = decodedToken.userId;
+
+        console.log('loggedInUserId', loggedInUserId);
 
         const newBlob = Blob({ name, color, user: loggedInUserId, tasks });
 
         await newBlob.save();
 
         return res.status(200).json({ message: 'Blob successfully created:', blob: newBlob });
+        
     } catch (error) {
         console.error('Error adding blob:', error);
         return res.status(500).json({ message: 'Internal server error'});
