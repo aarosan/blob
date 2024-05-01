@@ -10,8 +10,9 @@ exports.getAllTasks = async (req, res) => {
         }
 
         const tasks = blob.tasks;
+        const color = blob.color;
 
-        return res.status(200).json({ tasks });
+        return res.status(200).json({ tasks, color });
     } catch (error) {
         console.error('Error fetching tasks:', error);
         return res.status(500).json({ message: 'Internal server error'});

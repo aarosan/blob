@@ -10,7 +10,7 @@ import MyBlobs from './pages/MyBlobs';
 import AddBlobs from './pages/AddBlobs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import BlobDetails from './pages/BlobDetails';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/addBlobs',
         element: <AddBlobs />
+      },
+      {
+        path: '/blob/:blobName',
+        element: <BlobDetails />
       }
     ]
   }

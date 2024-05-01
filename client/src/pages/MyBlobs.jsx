@@ -11,8 +11,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const MyBlobs = () => {
-    const navigate = useNavigate()
-;
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [blobsData, setBlobsData] = useState([]);
 

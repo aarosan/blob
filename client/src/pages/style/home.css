@@ -67,10 +67,61 @@
     height: 100%; 
 }
 
-
 .loading {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.my-blobs-btn {
+    color: rgba(0, 0, 0, .5);
+    font-size: 30px;
+}
+
+.my-blobs-btn:hover {
+    color: rgba(0, 0, 0, .8);
+    transition: all .2s ease-out;
+    cursor: pointer;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff; /* Change the background color as needed */
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.task-name {
+    flex: 1;
+}
+
+.vertical-line {
+    width: 2px;
+    height: 30px;
+    background-color: #000; /* Change the color of the vertical line */
+    margin-right: 10px;
+}
+
+.task-date {
+    font-size: 14px;
+    color: #666; /* Change the color of the date text */
 }

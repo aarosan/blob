@@ -65,3 +65,8 @@ button:active {
 .blob-name p:hover::before {
     width: 100%; /* Expand the underline on hover */
 }
+
+.blob-link {
+    text-decoration: none;
+    color: black;
+}

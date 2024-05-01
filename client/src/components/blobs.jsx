@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Blob from "../components/Blob";
 import { Canvas } from "@react-three/fiber";
 
 import "./index.css";
 
-const Blobs = ({ name, color }) => {
+const Blobs = ({ id, name, color }) => {
 
 
     return (
@@ -12,7 +13,6 @@ const Blobs = ({ name, color }) => {
 
             <div className="blob-container">
                 <div className="blob" >
-                    <a href="/signup"> 
 
                         <Canvas
                             camera={{ position: [0, 0, 10], fov: 100 }}
@@ -21,9 +21,11 @@ const Blobs = ({ name, color }) => {
                         </Canvas>
 
                         <div className="blob-name">
-                            <p>{name}</p>
+                            <Link to={`/blob/${name}`} className="blob-link">
+                                <p>{name}</p>
+                            </Link>                        
                         </div>
-                    </a>
+             
                 </div>
             </div>
 
