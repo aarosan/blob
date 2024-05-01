@@ -68,52 +68,75 @@ const AddBlobs = () => {
             </Helmet>
 
             <div className="addblob-page-content">
-                <div className="title-container">
-                    add a blob
+
+                <div className="nav-bar">
+                    <div className="left-nav">
+                        <div className="page-title">
+                            Add a Blob
+                        </div>
+                    </div>
+                    
+                    <div className="right-nav">
+
+                    </div>
                 </div>
 
                 <div className="blob-input-container">
-                    <div className="blob-name-container">
-                        <input type="text" className="blob-name-input" placeholder="blob name" value={blobName} onChange={(e) => setBlobName(e.target.value)}/>
+
+                    <div className="blob-section">
+
+                        <div className="blob-name-container">
+                            <input type="text" className="blob-name-input" placeholder="blob name" value={blobName} onChange={(e) => setBlobName(e.target.value)}/>
+                        </div>
+
+                        <div className="blob-color-container">
+                            <select className="blob-color-input" value={blobColor} onChange={(e) => setBlobColor(e.target.value)}>
+                                <option value="">color</option>
+                                <option value="blue">blue</option>
+                                <option value="green">green</option>
+                                <option value="purple">purple</option>
+                                <option value="orange">orange</option>
+                                <option value="yellow">yellow</option>
+                                <option value="pink">pink</option>
+                                <option value="red">red</option>
+                            </select>
+                        </div>
+
                     </div>
-                    <div className="blob-color-container">
-                        <select className="blob-color-input" value={blobColor} onChange={(e) => setBlobColor(e.target.value)}>
-                            <option value="">Select Color</option>
-                            <option value="blue">Blue</option>
-                            <option value="green">Green</option>
-                            <option value="purple">Purple</option>
-                            <option value="orange">Orange</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="pink">Pink</option>
-                            <option value="red">Red</option>
-                        </select>
+
+                    <div className="divider"></div>
+
+                    <div className="task-section">
+                        {/* Task input containers */}
+                        {blobTasks.map((task, index) => (
+                            <TaskInputContainer
+                                key={index}
+                                index={index}
+                                task={task}
+                                onChange={handleTaskChange}
+                                onDelete={deleteTaskInput}
+                            />
+                        ))}
+
+                        {/* Add Task button */}
+                        <div className="add-task-button-container">
+                            <button className="add-task-button"onClick={addTaskInput}>add task</button>
+                        </div>
+
+
+                        <div className="link-btn-container">
+                            <div className="btn-container">
+                                <RouterButton
+                                text="create blob" 
+                                onClick={handleCreateBlob}/>
+                            </div>    
+                        </div>
+
                     </div>
+
                 </div>
 
-                {/* Task input containers */}
-                {blobTasks.map((task, index) => (
-                    <TaskInputContainer
-                        key={index}
-                        index={index}
-                        task={task}
-                        onChange={handleTaskChange}
-                        onDelete={deleteTaskInput}
-                    />
-                ))}
-
-                {/* Add Task button */}
-                <div className="add-task-container">
-                    <button onClick={addTaskInput}>Add Task</button>
-                </div>
-
-
-                <div className="link-btn-container">
-                    <div className="btn-container">
-                        <RouterButton
-                        text="create blob" 
-                        onClick={handleCreateBlob}/>
-                    </div>    
-                </div>
+                
             </div>
         </React.Fragment>
     )

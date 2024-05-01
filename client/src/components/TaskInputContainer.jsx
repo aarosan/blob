@@ -3,6 +3,8 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
+import '../pages/style/style.css';
+
 
 const TaskInputContainer = ({ index, task, onChange, onDelete }) => {
     const handleTaskChange = (field, value) => {
@@ -15,6 +17,7 @@ const TaskInputContainer = ({ index, task, onChange, onDelete }) => {
                 <input 
                     type="text"
                     placeholder="task name"
+                    className="task-name-input"
                     value={task.name}
                     onChange={(e) => handleTaskChange("name", e.target.value)}
                 />
@@ -23,6 +26,7 @@ const TaskInputContainer = ({ index, task, onChange, onDelete }) => {
                 <input 
                     type="date" 
                     value={task.date}
+                    className="task-date-input"
                     onChange={(e) => handleTaskChange("date", e.target.value)}
                 />
             </div>
