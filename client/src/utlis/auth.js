@@ -1,7 +1,7 @@
 // use this to decode a token and get the user's information out of it
-import * as jwt_decode from 'jwt-decode';
+// import * as jwt_decode from 'jwt-decode';
 
-// import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 
 // create a new class to instantiate for a user
@@ -10,7 +10,7 @@ class AuthService {
   getProfile() {
     const token = this.getToken();
     if (token) {
-      return jwt_decode(token);
+      return jwtDecode(token);
     }
     return null;
   }
@@ -26,7 +26,7 @@ class AuthService {
   // check if token is expired
   isTokenExpired(token) {
     try {
-      const decoded = jwt_decode(token);
+      const decoded = jwtDecode(token);
       if (decoded.exp < Date.now() / 1000) {
         return true; // Token is expired
       } else {
@@ -57,11 +57,20 @@ class AuthService {
 
   getUserId() {
     const token = this.getToken();
-    if (token) {
-      const decoded = jwt_decode(token);
-      return decoded.userId;
+    console.log('AUTH.JS: TOKEN', token)
+    try {
+      console.log('GETUSERID TRY INITIATED');
+      if (token) {
+        const decoded = jwtDecode(token);
+        console.log('If Statement decoded:', decoded);
+        console.log('LOGGED IN USER ID IN AUTH:', decoded.data._id);
+
+        return decoded.data._id;
+      }
+    } catch (error) {
+      console.error('GetUserID ERROR', error);
+      return null;
     }
-    return null;
   }
 
   logout() {

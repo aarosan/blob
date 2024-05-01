@@ -15,8 +15,8 @@ const TaskInputContainer = ({ index, task, onChange, onDelete }) => {
                 <input 
                     type="text"
                     placeholder="task name"
-                    value={task.text}
-                    onChange={(e) => handleTaskChange("text", e.target.value)}
+                    value={task.name}
+                    onChange={(e) => handleTaskChange("name", e.target.value)}
                 />
             </div>
             <div className="task-date-container">

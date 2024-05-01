@@ -59,8 +59,10 @@ exports.addABlob = async (req, res) => {
         }
 
         console.log('decodedToken', decodedToken);
+        console.log('decodedToken', decodedToken.data._id);
 
-        const loggedInUserId = decodedToken.userId;
+
+        const loggedInUserId = decodedToken.data._id;
 
         console.log('loggedInUserId', loggedInUserId);
 

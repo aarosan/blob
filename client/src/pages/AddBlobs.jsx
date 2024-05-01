@@ -22,6 +22,7 @@ const AddBlobs = () => {
 
         try {
             const userId = Auth.getUserId();
+            console.log('ADDBLOBS USERID', userId)
             const response = await fetch("http://localhost:4000/users/blobs", {
                 method: "POST",
                 headers: {
