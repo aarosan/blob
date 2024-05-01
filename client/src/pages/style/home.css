@@ -74,22 +74,17 @@
     transform: translate(-50%, -50%);
 }
 
-.my-blobs-btn {
-    color: rgba(0, 0, 0, .5);
-    font-size: 30px;
-}
-
-.my-blobs-btn:hover {
-    color: rgba(0, 0, 0, .8);
-    transition: all .2s ease-out;
-    cursor: pointer;
-}
-
 .task-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start ;
+    justify-content: center;
+    text-align: center;
     padding: 20px;
+    width: 75%;
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    gap: 20px;
 }
 
 .task {
@@ -102,26 +97,70 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background-color: #fff; /* Change the background color as needed */
-    margin-right: 10px;
+    margin-right: 20px;
     cursor: pointer;
 }
 
 .task-name {
-    flex: 1;
+    margin-right: 20px;
+    font-size: 16px;
 }
 
 .vertical-line {
-    width: 2px;
+    width: 5px;
     height: 30px;
-    background-color: #000; /* Change the color of the vertical line */
-    margin-right: 10px;
+    margin-right: 20px;
+    border-radius: 25px;;
 }
 
 .task-date {
-    font-size: 14px;
-    color: #666; /* Change the color of the date text */
+    font-size: 16px;
+}
+
+.task-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 20px;
+    width: 75%;
+    /* border: 1px solid black; */
+    margin: 10px auto;
+}
+
+.add-task-name-input {
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #FFE3CF 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;    
+    border: 1px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 50px;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.task-date-input {
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #FFE3CF 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;    
+    border: 1px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2.5px 10px;
+    font-size: 16px;
+    margin-right: 20px;
+    color: rgba(0, 0, 0, .5);
+}
+
+.add-button {
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-right: 20px;
+    color: rgba(0, 0, 0, .5);
 }

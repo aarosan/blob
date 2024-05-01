@@ -215,8 +215,8 @@
 .task-name-input:focus,
 .task-name-input:active,
 .task-name-input:hover {
-    background-color: #FFE3CF !important;
-    border: 1px solid #CB7940 !important;
+    background-color: #FFE3CF;
+    border: 1px solid #CB7940;
     transition: all .5s ease-out;
     background-position: left bottom;
 }

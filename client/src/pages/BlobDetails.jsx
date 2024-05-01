@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Auth from '../utlis/auth'; 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 import './style/home.css';
@@ -15,13 +15,15 @@ const BlobDetails = () => {
     const { blobName } = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [blobsDataDetails, setBlobsDataDetails] = useState([]);
-    const [color, setColor] = useState("");
+    const [lightAccentColor, setLightAccentColor] = useState("");
+    const [darkAccentColor, setDarkAccentColor] = useState("");
+
     const [taskName, setTaskName] = useState("");
     const [date, setDate] = useState("");
 
     console.log(blobName);
 
-    const colorMapping = {
+    const lightAccentColorMapping = {
         blue: "#C6DEF1",
         green: "#C9E4DE",
         purple: "#EDE6F7",
@@ -29,6 +31,16 @@ const BlobDetails = () => {
         yellow: "#FAEDCB",
         pink: "#F2C6DE",
         red: "#FFC6C6"
+    };
+
+    const darkAccentColorMapping = {
+        blue: "#003C6B",
+        green: "#005240",
+        purple: "#8E6EBB",
+        orange: "#CB7940",
+        yellow: "#AA8B39",
+        pink: "#89004B",
+        red: "#A50000"
     };
 
 
@@ -54,16 +66,15 @@ const BlobDetails = () => {
         .then(data => {
             console.log('THIS IS THE DATA FROM GET ALL TASKS:', data)
             setBlobsDataDetails(data.tasks);
-            setColor(colorMapping[data.color]);
+            setLightAccentColor(lightAccentColorMapping[data.color]);
+            setDarkAccentColor(darkAccentColorMapping[data.color]);
+
             setIsLoading(false);
         })
         .catch(error => {
             console.error('Error fetching blobs data:', error);
         })
     }
-
-    console.log('THIS IS THE BLOB COLOR', color);
-
 
     const handleAddTask = async () => {
         console.log('Add a Task Button Pressed');
@@ -156,7 +167,7 @@ const BlobDetails = () => {
                         <div key={index} className="task">
                             {/* Circle to mark task as completed */}
                             <div className="task-circle" onClick={() => handleDeleteTask(task._id)}>
-                                <FontAwesomeIcon icon={faCheckCircle} />
+                                <FontAwesomeIcon icon={faCircle} className='fa-circle' />
                             </div>
                             {/* Task name */}
                             <div className="task-name">{task.name}</div>
@@ -173,7 +184,7 @@ const BlobDetails = () => {
                     <input 
                         type="text"
                         placeholder="task name"
-                        className="task-name-input"
+                        className="add-task-name-input"
                         value={taskName}
                         onChange={(e) => setTaskName(e.target.value)}
                     />
@@ -186,9 +197,9 @@ const BlobDetails = () => {
                         onChange={(e) => setDate(e.target.value)}
                     />
                 </div>
-                <div className="task-add-container">
-                        <button onClick={handleAddTask}>Add Task</button>
-                    </div>
+                <div className="add-button-container">
+                        <button onClick={handleAddTask} className="add-button">Add Task</button>
+                </div>
 
             </div>  
 
@@ -198,8 +209,34 @@ const BlobDetails = () => {
         <style>
             {`
             body {
-                background-color: ${color};
+                background-color: ${lightAccentColor};
             }
+
+            .my-blobs-btn {
+                color: rgba(0, 0, 0, .5);
+                font-size: 30px;
+            }
+            
+            .my-blobs-btn:hover {
+                color: ${darkAccentColor};
+                transition: all .2s ease-out;
+                cursor: pointer;
+            }
+
+            .task-circle {
+                color: ${lightAccentColor};
+                background-color: ${darkAccentColor};
+            }
+
+            .task-circle:hover {
+                color: ${darkAccentColor};
+                transition: all .2s ease-out;
+            }
+
+            .vertical-line {
+                background-color: ${darkAccentColor};
+            }          
+            
             `}
         </style>
 
