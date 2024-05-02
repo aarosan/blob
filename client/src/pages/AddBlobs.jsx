@@ -12,7 +12,7 @@ const AddBlobs = () => {
 
     const [blobName, setBlobName] = useState("");
     const [blobColor, setBlobColor] = useState("");
-    const [blobTasks, setBlobTasks] = useState([]);
+    const [blobTasks, setBlobTasks] = useState([{ text: "", date: "" }]);
 
 
     const handleCreateBlob = async () => {
