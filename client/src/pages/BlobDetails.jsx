@@ -64,12 +64,19 @@ const BlobDetails = () => {
             return response.json();
         })
         .then(data => {
-            console.log('THIS IS THE DATA FROM GET ALL TASKS:', data)
-            setBlobsDataDetails(data.tasks);
+            console.log('THIS IS THE DATA FROM GET ALL TASKS:', data);
+
+            const sortedTasks = data.tasks.sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateA - dateB;
+            });
+
+            setBlobsDataDetails(sortedTasks);
             setLightAccentColor(lightAccentColorMapping[data.color]);
             setDarkAccentColor(darkAccentColorMapping[data.color]);
-
             setIsLoading(false);
+
         })
         .catch(error => {
             console.error('Error fetching blobs data:', error);
@@ -137,6 +144,39 @@ const BlobDetails = () => {
         }
     };
 
+    const formatDate = (dateString) => {
+        const currentDate = new Date();
+        const inputDate = new Date(dateString);
+
+        inputDate.setUTCHours(0, 0, 0, 0);
+        currentDate.setUTCHours(0, 0, 0, 0);
+    
+        if (
+            inputDate.getTime() === currentDate.getTime()
+        ) {
+            return 'Today';
+        }
+    
+        const tomorrow = new Date(currentDate);
+        tomorrow.setDate(currentDate.getDate() + 1);
+        tomorrow.setUTCHours(0, 0, 0, 0);
+    
+        if (
+            inputDate.getTime() === tomorrow.getTime()
+        ) {
+            return 'Tomorrow';
+        } 
+
+        if (inputDate > currentDate) {
+            inputDate.setDate(inputDate.getDate() + 1);
+        }
+        
+        const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
+        return inputDate.toLocaleDateString(undefined, options);
+    
+
+    };
+
 
     return (
         <React.Fragment>
@@ -146,65 +186,66 @@ const BlobDetails = () => {
             </Helmet>
 
 
-        <div className="blob-details-page-container" >
-            <div className="nav-bar">
-                <div className="left-nav">
-                    <div className="page-title">
-                        {blobName}
-                    </div>
-                </div>
-                <div className="right-nav">
-                    <div className="link-container">
-                        <div className="my-blobs-btn">
-                            <FontAwesomeIcon icon={faHouse} onClick={handleMyBlobs} />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="task-container">
-                    {blobsDataDetails.map((task, index) => (
-                        <div key={index} className="task">
-                            {/* Circle to mark task as completed */}
-                            <div className="task-circle" onClick={() => handleDeleteTask(task._id)}>
-                                <FontAwesomeIcon icon={faCircle} className='fa-circle' />
+                <div className="blob-details-page-container" >
+                    <div className="nav-bar">
+                        <div className="left-nav">
+                            <div className="page-title">
+                                {blobName}
                             </div>
-                            {/* Task name */}
-                            <div className="task-name">{task.name}</div>
-                            {/* Vertical line */}
-                            <div className="vertical-line"></div>
-                            {/* Date */}
-                            <div className="task-date">{task.date}</div>
                         </div>
-                    ))}
-            </div>
+                        <div className="right-nav">
+                            <div className="link-container">
+                                <div className="my-blobs-btn">
+                                    <FontAwesomeIcon icon={faHouse} onClick={handleMyBlobs} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div className="task-input-container">
-                <div className="task-name-container">
-                    <input 
-                        type="text"
-                        placeholder="task name"
-                        className="add-task-name-input"
-                        value={taskName}
-                        onChange={(e) => setTaskName(e.target.value)}
-                    />
-                </div>
-                <div className="task-date-container">
-                    <input 
-                        type="date" 
-                        value={date}
-                        className="task-date-input"
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-                </div>
-                <div className="add-button-container">
-                        <button onClick={handleAddTask} className="add-button">Add Task</button>
-                </div>
+                    <div className="task-container">
+                            {blobsDataDetails.map((task, index) => (
+                                <div key={index} className="task">
+                                    {/* Circle to mark task as completed */}
+                                    <div className="task-circle" onClick={() => handleDeleteTask(task._id)}>
+                                        <FontAwesomeIcon icon={faCircle} className='fa-circle' />
+                                    </div>
+                                    {/* Task name */}
+                                    <div className="task-name">{task.name}</div>
+                                    {/* Vertical line */}
+                                    <div className="vertical-line"></div>
+                                    {/* Date */}
+                                    <div className="task-date">{formatDate(task.date)}</div>
+                                </div>
+                            ))}
+                    </div>
 
-            </div>  
+                    <div className="task-input-container">
+                        <div className="task-name-container">
+                            <input 
+                                type="text"
+                                placeholder="task name"
+                                className="add-task-name-input"
+                                value={taskName}
+                                onChange={(e) => setTaskName(e.target.value)}
+                            />
+                        </div>
+                        <div className="task-date-container">
+                            <input 
+                                type="date" 
+                                value={date}
+                                className="task-date-input"
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                        </div>
+                        <div className="add-button-container">
+                                <button onClick={handleAddTask} className="add-button">Add Task</button>
+                        </div>
 
-            
-        </div>
+                    </div>  
+
+
+                    
+                </div>
 
         <style>
             {`
@@ -235,7 +276,8 @@ const BlobDetails = () => {
 
             .vertical-line {
                 background-color: ${darkAccentColor};
-            }          
+            }
+            
             
             `}
         </style>
