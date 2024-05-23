@@ -133,6 +133,19 @@
     display: flex;
 }
 
+.add-blob-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.add-blob-page-title {
+    font-size: 48px;
+    color: rgba(0, 0, 0, .8);
+    margin: 30px;
+    margin-left: 50px;
+}
+
 .blob-input-container {
     border: 1px solid black;
     border-radius: 25px;
@@ -149,7 +162,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px;
+    margin-top: 20px;
     gap: 20px;
 }
 
@@ -162,16 +175,6 @@
     text-align: center;
     padding: 5px 50px;
     font-size: 16px;
-    margin-right: 80px;
-}
-
-.blob-name-input:focus,
-.blob-name-input:active,
-.blob-name-input:hover {
-    background-color: #FFE3CF !important;
-    border: 1px solid #CB7940 !important;
-    transition: all .5s ease-out;
-    background-position: left bottom;
 }
 
 .blob-color-input {
@@ -182,7 +185,6 @@
     font-size: 16px;
     text-align: center;
     padding: 5px 15px;
-    margin-left: 100px;
 }
 
 .divider {
@@ -193,11 +195,24 @@
     margin: 20px 0;
 }
 
-.task-input-container {
+.task-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    /* margin-top: 20px; */
+    gap: 20px;
+}
+
+.task-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-name-container {
+    margin: 0 auto;
 }
 
 .task-name-input {
@@ -209,30 +224,8 @@
     text-align: center;
     padding: 5px 50px;
     font-size: 16px;
-    margin-right: 80px;
-}
+    margin-right: 20px;
 
-.task-name-input:focus,
-.task-name-input:active,
-.task-name-input:hover {
-    background-color: #FFE3CF;
-    border: 1px solid #CB7940;
-    transition: all .5s ease-out;
-    background-position: left bottom;
-}
-
-.task-date-input {
-    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #FFE3CF 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;    
-    border: 1px solid #000000;
-    border-radius: 20px;
-    text-align: center;
-    padding: 5px 20px;
-    font-size: 16px;
-    margin-right: 80px;
-    font-family: "Open Sans", sans-serif;
-    color: rgba(0, 0, 0, .8);
 }
 
 .task-delete-container {
@@ -257,7 +250,6 @@
     font-family: "Open Sans", sans-serif;
     font-weight: 300;
     font-size: 16px;
-    margin-top: 20px;
 }
 
 .add-task-button:hover {
@@ -272,6 +264,148 @@
     box-shadow: 0 0 5px #8E6EBB;
 }
 
-.link-btn-container {
+.add-task-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 75%;
     margin-top: 10px;
+}
+
+.add-task-date-input {
+    background: linear-gradient(to left, rgba(217, 217, 217, 0.2) 50%, #FFE3CF 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;    
+    border: 1px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2.5px 10px;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: rgba(0, 0, 0, .8);
+    margin-right: 20px;
+}
+
+.task-input-container-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Extra Small Devices (Phones) */
+@media (max-width: 576px) {
+    .login-page-content {
+        margin: 0 10px;
+    }
+
+    .first-name-input {
+        padding: 5px 50px;
+    }
+
+    .last-name-input {
+        padding: 5px 50px;
+    }
+
+    .email-input {
+        padding: 5px 50px;
+    }
+
+    .password-input {
+        padding: 5px 50px;
+    }
+
+    .blob-name-input {
+        padding: 5px 30px;
+    }
+
+    .blob-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-task-input-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .task-input-container-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-date-container {
+        margin-right: 20px;
+    }
+
+    .blob-input-container {
+        width: 90%;
+    }
+
+    .task-name-input {
+        margin-right: 0px;
+    }
+}
+
+/* Small Devices (Tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .blob-name-input {
+        padding: 5px 30px;
+    }
+
+    .add-task-input-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .task-input-container-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-date-container {
+        margin-right: 20px;
+    }
+
+    .blob-input-container {
+        width: 80%;
+    }
+}
+
+/* Medium Devices (Desktops) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .blob-input-container {
+        width: 80%;
+    }
+}
+
+/* Large Devices (Desktops) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .blob-input-container {
+        width: 60%;
+    }
+
+    .blob-section {
+        gap: 20px;
+    }
+
+    .blob-name-container {
+        margin-right: 40px;
+    }
+}
+
+/* Extra Large Devices (Large Desktops) */
+@media (min-width: 1201px) {
+    .blob-name-container {
+        margin-right: 40px;
+    }
 }

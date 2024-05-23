@@ -69,9 +69,9 @@ const AddBlobs = () => {
 
             <div className="addblob-page-content">
 
-                <div className="nav-bar">
+                <div className="add-blob-nav-bar">
                     <div className="left-nav">
-                        <div className="page-title">
+                        <div className="add-blob-page-title">
                             Add a Blob
                         </div>
                     </div>
@@ -107,7 +107,8 @@ const AddBlobs = () => {
                     <div className="divider"></div>
 
                     <div className="task-section">
-                        {/* Task input containers */}
+                        <div className="task-input">
+   
                         {blobTasks.map((task, index) => (
                             <TaskInputContainer
                                 key={index}
@@ -117,6 +118,8 @@ const AddBlobs = () => {
                                 onDelete={deleteTaskInput}
                             />
                         ))}
+                        </div>
+
 
                         {/* Add Task button */}
                         <div className="add-task-button-container">

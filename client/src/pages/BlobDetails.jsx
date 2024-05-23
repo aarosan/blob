@@ -229,6 +229,7 @@ const BlobDetails = () => {
                                 onChange={(e) => setTaskName(e.target.value)}
                             />
                         </div>
+
                         <div className="task-date-container">
                             <input 
                                 type="date" 
@@ -237,6 +238,7 @@ const BlobDetails = () => {
                                 onChange={(e) => setDate(e.target.value)}
                             />
                         </div>
+                        
                         <div className="add-button-container">
                                 <button onClick={handleAddTask} className="add-button">Add Task</button>
                         </div>
